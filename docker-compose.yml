@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: berkut_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - TELEGRAM_BOT_TOKEN=8134650857:AAEywtUF3P2QFkhjbmw-odcfitl2bjpVOHA
+
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: berkut
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
